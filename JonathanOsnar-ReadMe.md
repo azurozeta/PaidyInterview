@@ -1,0 +1,7 @@
+The requirement is that One Frame service only allow up to 1k request per day / token. I'm assuming we only alloted this single token and that's become the limitation. Although the specification say it should cater for more than 10k request / day, which can be accompodated by having a cache data that will be refreshed as needed. The specification does say the cache must not exceed 5 minutes old. In reality, I don't know when the user would request it, so the worst case scenario is when user keep requesting every 5 minutes, which amount to 288 request / day, still below the limit.
+
+Now, it's important to note that the request to one frame doesn't care about the payload. One request asking for 1 pair versus one request asking for 10 pairs is treated as same one request. I can use it for advantage. If we optimize, 1k quota can allow 1.44 minutess or 1:26.4 refresh time. So I think a 1.5 minutes refresh time (which send 960 request a day) can give the users fairly updated data within alloted quota. The rest of 40 requests can be used for retries, although I would assume One Frame has a good availability. 
+
+Better yet, instead of keeping certain interval, I think it's better to refresh on demand. This way, instead of someone lucky enough to request at the mark of 1.5 minutes, the first user to request after 1.5 minutes will always get near real time data. So the algorithm should look like this:
+User request -> Last data exceed 1.5 minutes? -> Yes -> Refresh Rate and Save to Cache -> Return pair from cache
+					      -> No -> Return pair from cache
