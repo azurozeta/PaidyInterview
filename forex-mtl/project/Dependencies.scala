@@ -3,6 +3,8 @@ import sbt._
 object Dependencies {
 
   object Versions {
+    val akka                = "2.5.26"
+    val akkaHttp            = "10.1.11"
     val cats                = "2.5.0"
     val catsEffect          = "2.4.1"
     val fs2                 = "2.5.4"
@@ -20,6 +22,12 @@ object Dependencies {
   object Libraries {
     def circe(artifact: String): ModuleID = "io.circe"    %% artifact % Versions.circe
     def http4s(artifact: String): ModuleID = "org.http4s" %% artifact % Versions.http4s
+    def akka(artifact: String, version: String): ModuleID = "com.typesafe.akka" %% artifact % version
+
+    // akka streams
+    lazy val akkaStream          = akka("akka-stream", Versions.akka)
+    lazy val akkaHttp            = akka("akka-http", Versions.akkaHttp)
+    lazy val akkaHttpSpray       = akka("akka-http-spray-json", Versions.akkaHttp)
 
     lazy val cats                = "org.typelevel"         %% "cats-core"                  % Versions.cats
     lazy val catsEffect          = "org.typelevel"         %% "cats-effect"                % Versions.catsEffect
