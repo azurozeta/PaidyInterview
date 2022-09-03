@@ -39,4 +39,18 @@ object Currency {
     case "USD" => USD
   }
 
+  // I want a function to iterate between case class so bad. This is a very tedious and not future proof
+  val getAllPairs : List[String] = {
+    List(
+      "AUDCAD", "AUDCHF", "AUDEUR", "AUDGBP", "AUDNZD", "AUDJPY", "AUDSGD", "AUDUSD",
+      "CADAUD", "CADCHF", "CADEUR", "CADGBP", "CADNZD", "CADJPY", "CADSGD", "CADUSD",
+      "CHFAUD", "CHFCAD", "CHFEUR", "CHFGBP", "CHFNZD", "CHFJPY", "CHFSGD", "CHFUSD",
+      "EURAUD", "EURCAD", "EURCHF", "EURGBP", "EURNZD", "EURJPY", "EURSGD", "EURUSD",
+      "GBPAUD", "GBPCAD", "GBPCHF", "GBPEUR", "GBPNZD", "GBPJPY", "GBPSGD", "GBPUSD",
+      "NZDAUD", "NZDCAD", "NZDCHF", "NZDEUR", "NZDGBP", "NZDJPY", "NZDSGD", "NZDUSD",
+      "JPYAUD", "JPYCAD", "JPYCHF", "JPYEUR", "JPYGBP", "JPYNZD", "JPYSGD", "JPYUSD",
+      "SGDAUD", "SGDCAD", "SGDCHF", "SGDEUR", "SGDGBP", "SGDNZD", "SGDJPY", "SGDUSD",
+      "USDAUD", "USDCAD", "USDCHF", "USDEUR", "USDGBP", "USDNZD", "USDJPY", "USDSGD",
+    )
+  }
 }
