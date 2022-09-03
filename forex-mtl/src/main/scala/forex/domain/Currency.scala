@@ -14,6 +14,7 @@ object Currency {
   case object JPY extends Currency
   case object SGD extends Currency
   case object USD extends Currency
+  case object XXX extends Currency
 
   implicit val show: Show[Currency] = Show.show {
     case AUD => "AUD"
@@ -25,6 +26,7 @@ object Currency {
     case JPY => "JPY"
     case SGD => "SGD"
     case USD => "USD"
+    case _ => ""
   }
 
   def fromString(s: String): Currency = s.toUpperCase match {
@@ -37,6 +39,7 @@ object Currency {
     case "JPY" => JPY
     case "SGD" => SGD
     case "USD" => USD
+    case _ => XXX // without else case, program will crash if asked for unknown pair when doing type conversion
   }
 
   // I want a function to iterate between case class so bad. This is a very tedious and not future proof
