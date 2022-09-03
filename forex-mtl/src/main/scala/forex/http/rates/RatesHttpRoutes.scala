@@ -18,6 +18,10 @@ class RatesHttpRoutes[F[_]: Sync](rates: RatesProgram[F]) extends Http4sDsl[F] {
   private val httpRoutes: HttpRoutes[F] = HttpRoutes.of[F] {
     case GET -> Root :? FromQueryParam(from) +& ToQueryParam(to) =>
       rates.get(RatesProgramProtocol.GetRatesRequest(from, to)).flatMap(Sync[F].fromEither).flatMap { rate =>
+        // The last flatMap actually crash and throw this error if i put the OneFrameLookupFailed error
+        // Not sure what's missing, so close yet so far
+        // forex.programs.rates.errors$Error$RateLookupFailed: null
+        //   at forex.programs.rates.errors$.toProgramError(errors.scala:13)
         Ok(rate.asGetApiResponse)
       }
   }
