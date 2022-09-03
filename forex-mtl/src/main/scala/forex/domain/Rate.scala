@@ -3,6 +3,8 @@ package forex.domain
 case class Rate(
     pair: Rate.Pair,
     price: Price,
+    ask: Price,
+    bid: Price,
     timestamp: Timestamp
 )
 
