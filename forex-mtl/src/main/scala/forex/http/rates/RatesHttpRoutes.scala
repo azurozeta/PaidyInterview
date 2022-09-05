@@ -18,7 +18,7 @@ class RatesHttpRoutes[F[_]: Sync](rates: RatesProgram[F]) extends Http4sDsl[F] {
   private val httpRoutes: HttpRoutes[F] = HttpRoutes.of[F] {
     case GET -> Root :? FromQueryParam(from) +& ToQueryParam(to) =>
       rates.get(RatesProgramProtocol.GetRatesRequest(from, to)).flatMap {
-        case Left(_) => BadRequest()  // Finally got to return bad request, but need to figure out how to transform to json response
+        case Left(error) => BadRequest(error.asGetErrorResponse)
         case Right(rate) => Ok(rate.asGetApiResponse)
       }
   }
