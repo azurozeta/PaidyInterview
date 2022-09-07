@@ -42,18 +42,24 @@ object Currency {
     case _ => XXX // without else case, program will crash if asked for unknown pair when doing type conversion
   }
 
-  // I want a function to iterate between case class so bad. This is a very tedious and not future proof
-  val getAllPairs : List[String] = {
+  // A better approach, at least only need to add new currency here, less prone to human mistake
+  val validCurrencies : List[Currency] =
     List(
-      "AUDCAD", "AUDCHF", "AUDEUR", "AUDGBP", "AUDNZD", "AUDJPY", "AUDSGD", "AUDUSD",
-      "CADAUD", "CADCHF", "CADEUR", "CADGBP", "CADNZD", "CADJPY", "CADSGD", "CADUSD",
-      "CHFAUD", "CHFCAD", "CHFEUR", "CHFGBP", "CHFNZD", "CHFJPY", "CHFSGD", "CHFUSD",
-      "EURAUD", "EURCAD", "EURCHF", "EURGBP", "EURNZD", "EURJPY", "EURSGD", "EURUSD",
-      "GBPAUD", "GBPCAD", "GBPCHF", "GBPEUR", "GBPNZD", "GBPJPY", "GBPSGD", "GBPUSD",
-      "NZDAUD", "NZDCAD", "NZDCHF", "NZDEUR", "NZDGBP", "NZDJPY", "NZDSGD", "NZDUSD",
-      "JPYAUD", "JPYCAD", "JPYCHF", "JPYEUR", "JPYGBP", "JPYNZD", "JPYSGD", "JPYUSD",
-      "SGDAUD", "SGDCAD", "SGDCHF", "SGDEUR", "SGDGBP", "SGDNZD", "SGDJPY", "SGDUSD",
-      "USDAUD", "USDCAD", "USDCHF", "USDEUR", "USDGBP", "USDNZD", "USDJPY", "USDSGD",
+      AUD,
+      CAD,
+      CHF,
+      EUR,
+      GBP,
+      NZD,
+      JPY,
+      SGD,
+      USD,
     )
-  }
+
+  val getAllPairs : List[String] =
+    for {
+      a <- validCurrencies.map(x => x)
+      b <- validCurrencies.map(x => x)
+      if a != b
+    } yield Currency.show.show(a) + Currency.show.show(b)
 }

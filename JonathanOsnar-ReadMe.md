@@ -39,3 +39,7 @@ Things to improve:
 
 Conclusion:
 It has been an exciting (and eye + head scratching) moment, doing this take home assesment. So many new stuffs I'm not aware of. The design didn't took long to make, but the actual implementation is filled with "nani the heck?" moments. When I finally manage to make the first API call, the dopamine effect goes over the top :D. I was too naive when saying the FP is just like the old procedural programming. It's not. The immutability rule take that to another level, for a good reason. Machine is consistent, either consistently right, or consistently wrong, as long as we don't change the parameter. This is consistent with my way of programming, where I always make small step then check if I'm on the right track, and use the working one as the fact base to go for next step. After doing this assessment, so many imperfection that I want to polish. So many things I still have to learn beyond the horizon! I'm looking forward to learn how the expert done it in Paidy :D
+
+
+Additional note:
+I'll be using my spare time to learn more of Scala concept and technique. I'll be using this branch to make improvements. If this is not allowed for interview purpose, please refer to last commit on September 5th as the interview submission.
