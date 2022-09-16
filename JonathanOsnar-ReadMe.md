@@ -43,3 +43,18 @@ It has been an exciting (and eye + head scratching) moment, doing this take home
 
 Additional note:
 I'll be using my spare time to learn more of Scala concept and technique. I'll be using this branch to make improvements. If this is not allowed for interview purpose, please refer to last commit on September 5th as the interview submission.
+
+
+Note on Kafka:
+I'm learning Kafka and turn out it's similar to MSMQ which I'm familiar with. So I'm creating additional scenario: when the RateCache refresh, it would stream out the new rates so everyone subscribed to the topic get the rate right away without the need to make API call. To make it easier to reverse the commit if anything goes wrong, I would include all Kafka related change into a single commit.
+
+To setup the Kafka part:
+open cmd
+navigate to "forex-mtl\src\main\docker\kafka\"
+setup docker by this command: docker-compose up -d
+go to kafka bash command: docker exec -it broker bash
+create kafka topic command: kafka-topics --bootstrap-server localhost:9092 --topic rate-updates --create
+
+A sample consumer app can be found in "forex-mtl\src\main\scala\forex\stream" to simulate the subscriber.
+
+This is just barely touch the surface, from what i see in tutorial, we can actually make pipeline by filter and transform between topics. For now, I'll leave it at this.

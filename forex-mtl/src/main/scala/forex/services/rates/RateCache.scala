@@ -2,6 +2,7 @@ package forex.services.rates
 
 import forex.domain.Rate.Pair
 import forex.domain.{Currency, Price, Rate, Timestamp}
+import forex.stream.RateStream
 
 import java.time.OffsetDateTime
 import java.time.temporal.ChronoUnit
@@ -33,5 +34,7 @@ object RateCache {
     })
 
     lastRefresh = Timestamp.now
+
+    RateStream.publishRate(json)
   }
 }

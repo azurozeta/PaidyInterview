@@ -60,6 +60,7 @@ libraryDependencies ++= Seq(
   Libraries.http4sDsl,
   Libraries.http4sServer,
   Libraries.http4sCirce,
+  Libraries.zioKafka,
   Libraries.circeCore,
   Libraries.circeGeneric,
   Libraries.circeGenericExt,
