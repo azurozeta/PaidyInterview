@@ -51,12 +51,16 @@ resolvers +=
 
 libraryDependencies ++= Seq(
   compilerPlugin(Libraries.kindProjector),
+  Libraries.akkaHttp,
+  Libraries.akkaHttpSpray,
+  Libraries.akkaStream,
   Libraries.cats,
   Libraries.catsEffect,
   Libraries.fs2,
   Libraries.http4sDsl,
   Libraries.http4sServer,
   Libraries.http4sCirce,
+  Libraries.zioKafka,
   Libraries.circeCore,
   Libraries.circeGeneric,
   Libraries.circeGenericExt,
